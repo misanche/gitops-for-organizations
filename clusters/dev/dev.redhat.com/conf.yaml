@@ -6,4 +6,5 @@ cluster:
   environment: dev
   datacenter: europe
   region: eu
+  cloud: azure
   registry: quay-dev.io
