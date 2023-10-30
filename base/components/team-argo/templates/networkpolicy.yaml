@@ -1,0 +1,40 @@
+# {{- range $team := .Values.teams }}
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: {{ $team.name }}-network-policy
+#   namespace: cluster-ops
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: {{ $team.name }}-ci-cd
+#     server: https://kubernetes.default.svc
+#   project: default
+#   source:
+#     helm:
+#       releaseName: {{ $team.name }}-network-policy
+#       values: |
+#         disable_default_network_policies: {{ $team.disable_default_network_policies | default false }}
+#         default_network_policies_namespaces:
+#         {{- range $ns := $.Values.team_namespaces }}
+#           - {{ $team.name }}-{{ $ns.name }}
+#         {{- end }}
+#         {{- if $team.network_policies }}
+#         network_policies: {{- $team.network_policies | toYaml | nindent 10 }}
+#         {{- end }}
+#     repoURL: 
+#     path: network-policy
+#     targetRevision: master
+#   {{- if $.Values.sync_policy }}
+#   {{- toYaml $.Values.sync_policy | nindent 2 }}
+#   {{- else }}
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - Validate=true
+#   {{- end }}
+# {{- end }}

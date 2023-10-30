@@ -1,0 +1,21 @@
+{{- $outer := . }}
+{{- range $team := $outer.Values.teams }}
+{{- range $team_ns := $outer.Values.team_namespaces }}
+{{ $ns:= printf "%s-%s" $team.name $team_ns.name }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $ns | quote}}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+  {{- range $k,$v := $team_ns.annotations }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  labels:
+    argocd.argoproj.io/managed-by: {{ $team.name }}-ci-cd
+  {{- range $k,$v := $team_ns.labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+{{- end }}
+{{- end }}

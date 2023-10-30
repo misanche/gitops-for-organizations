@@ -1,0 +1,33 @@
+# {{- range $team := .Values.teams }}
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+#   name: gitops
+#   namespace: {{ $team.name }}-ci-cd
+# spec:
+#   destination:
+#     namespace: {{ $team.name }}-ci-cd
+#     server: https://kubernetes.default.svc
+#   project: default
+#   source:
+#     helm:
+#       releaseName: gitops
+#       valueFiles:
+#         - clusters/{{ $.Values.cluster }}/{{ $.Values.region }}/{{ $team.name }}.yaml
+#     path: base/components/
+#     repoURL: {{ $.Values.repo_url }}
+#     targetRevision: {{ $.Values.repo_target_revision | default "main" }}
+#   {{- if $.Values.sync_policy }}
+#   {{- toYaml $.Values.sync_policy | nindent 2 }}
+#   {{- else }}
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - Validate=true
+#   {{- end }}
+# {{- end }}

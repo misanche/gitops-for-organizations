@@ -1,0 +1,43 @@
+{{- range $team := .Values.teams }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  name: argocd-{{ $team.name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  destination:
+    namespace: {{ $team.name }}-ci-cd
+    server: https://kubernetes.default.svc
+  project: team-argocd
+  source:
+    chart: gitops-operator
+    repoURL: https://redhat-cop.github.io/helm-charts
+    targetRevision: {{ $.Values.gitops_operator_chart_version | default "0.8.4" }}
+    helm:
+      releaseName: argocd-{{ $team.name }}
+      values: |
+        ignoreHelmHooks: true
+        name: argocd
+        teamInstancesAreClusterScoped: false
+        operator: false
+        namespaces:
+          - {{ $team.name }}-ci-cd
+        argocd_cr:
+          version: {{ $team.argocd_version | default $.Values.argocd_version }}
+          ha:
+            enabled: false
+  {{- if $.Values.sync_policy }}
+  {{- toYaml $.Values.sync_policy | nindent 2 }}
+  {{- else }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=true
+  {{- end }}
+{{- end }}

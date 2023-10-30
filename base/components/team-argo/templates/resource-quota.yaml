@@ -1,0 +1,20 @@
+{{- $outer := . }}
+{{- range $team := $outer.Values.teams }}
+{{- range $team_ns := $outer.Values.team_namespaces }}
+{{ $ns:= printf "%s-%s" $team.name $team_ns.name }}
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: max-object-counts
+  namespace: {{ $ns | quote}}
+spec:
+  hard:
+    configmaps: "1000" 
+    persistentvolumeclaims: "1000" 
+    replicationcontrollers: "1000" 
+    secrets: "1000" 
+    services: "1000" 
+    services.loadbalancers: "1000"
+{{- end }}
+{{- end }}

@@ -1,0 +1,21 @@
+{{- $outer := . }}
+{{- range $team := $outer.Values.teams }}
+{{- range $team_ns := $outer.Values.team_namespaces }}
+{{ $ns:= printf "%s-%s" $team.name $team_ns.name }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{ $team.name }}-resource-limits
+  namespace: {{ $ns | quote}}
+spec:
+  limits:
+    - type: Container
+      default:
+        cpu: "256m"
+        memory: "256Mi"
+      defaultRequest:
+        cpu: "50m"
+        memory: "100Mi"
+{{- end }}
+{{- end }}

@@ -1,0 +1,41 @@
+# A map of teams.  For each team, argocd and UJ app will be deployed into <name>-ci-cd namespace
+teams:
+- name: test
+
+# Network Policy examples:
+#
+# Exclude default network policies for all namespaces of team bob:
+# teams:
+# ...
+# - name: bob
+#   disable_default_network_policies: true
+#
+# Define a custom network policy for team bob to allow pods in namespace=fred to access pods in namespace=bob-dev:
+# teams:
+# ...
+# - name: bob
+#   network_policies:
+#   - name: allow-fred-pods
+#     namespace: bob-dev
+#   spec:
+#     ingress:
+#     - from:
+#       - namespaceSelector:
+#           matchLabels:
+#             kubernetes.io/metadata.name: fred
+#     podSelector: {}
+
+# Map of team namespace suffixes to create (<team_name>- will be prepended)
+# Labels and annotations can be added to each team if required
+team_namespaces:
+- name: ci-cd
+- name: dev
+- name: test
+
+# The repo containing the UJ
+repo_url: repoUrl
+# The branch for the UJ repo
+repo_target_revision: main
+
+# Global argocd_version to install - can be overridden per team if required
+#argocd_version: v2.8.4
