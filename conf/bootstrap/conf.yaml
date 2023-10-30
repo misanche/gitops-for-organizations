@@ -1,0 +1,25 @@
+ops_namespace: &ops "cluster-ops"
+
+namespaces:
+- name: *ops
+  labels:
+    argocd.argoproj.io/managed-by: *ops
+  annotations:
+    "helm.sh/resource-policy": keep # Never delete the cluster-ops namespace
+
+gitops-operator:
+  enabled: true
+  # Since this is designed to be run before the cluster knows anything about the argocd CR, we need to use helm hooks to control the ordering
+  # This means that the cluster argocd resource is deployed as a helm hook rather than a managed resource
+  # This has the side-effect that every time you run "helm upgrade" argocd will be deleted and recreated
+  # It should not affect the applications
+  ignoreHelmHooks: false
+  name: argocd
+  teamInstancesAreClusterScoped: true
+  operator:
+    channel: latest
+    disableDefaultArgoCD: true
+  namespaces:
+  - *ops
+  argocd_cr:
+    version: v2.8.3

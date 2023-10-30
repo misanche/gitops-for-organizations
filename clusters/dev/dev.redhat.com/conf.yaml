@@ -1,0 +1,9 @@
+cluster:
+  name: dev
+  domain: dev.redhat.com
+  fqdn: dev.redhat.com
+  address: "https://kubernetes.default.svc"
+  environment: dev
+  datacenter: europe
+  region: eu
+  registry: quay-dev.io
