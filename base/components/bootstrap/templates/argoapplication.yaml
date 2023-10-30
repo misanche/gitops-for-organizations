@@ -9,6 +9,7 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 {{- end }}
+  namespace: {{ $app.destination | default "ocp-ci-cd" }}
   name: {{ $app.name }}
 spec:
   destination:
