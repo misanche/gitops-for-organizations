@@ -1,0 +1,10 @@
+cluster:
+  name: pro
+  domain: pro.redhat.com
+  fqdn: pro.redhat.com
+  address: "https://kubernetes.default.svc"
+  environment: pro
+  datacenter: europe
+  region: eu
+  cloud: azure
+  registry: quay-pro.io
