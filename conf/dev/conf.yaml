@@ -7,3 +7,7 @@ cluster:
   datacenter: europe
   region: eu
   registry: quay-dev.io
+
+
+gitops-operator:
+  enabled: false

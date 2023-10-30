@@ -1,6 +1,0 @@
-dependencies:
-- name: gitops-operator
-  repository: https://redhat-cop.github.io/helm-charts
-  version: 0.8.4
-digest: sha256:8ecd3bc8cbc7186ba125edb81b24d8e7939f7fadbe06912cce5b9a3f930cc089
-generated: "2023-10-30T09:51:36.9217+01:00"
