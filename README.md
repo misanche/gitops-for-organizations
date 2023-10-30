@@ -4,4 +4,4 @@
 2. Install the bootstrap helm char
    ```helm upgrade --install bootstrap-cluster-ops -f conf/bootstrap/conf.yaml base/components/bootstrap --create-namespace --namespace cluster-ops-bootstrap```
 3. Apply the first application.
-4. 
+   ```oc apply -f clusters/acm-hub/applications/bootstrap-app.yaml```
