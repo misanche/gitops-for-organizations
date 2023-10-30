@@ -14,4 +14,4 @@ gitops-operator:
   secrets: false
   namespaces: false
   ignoreHelmHooks: true
-namespaces: falses
+namespaces: false
