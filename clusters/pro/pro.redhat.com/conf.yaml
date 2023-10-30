@@ -2,7 +2,7 @@ cluster:
   name: pro
   domain: pro.redhat.com
   fqdn: pro.redhat.com
-  address: "https://kubernetes.default.svc"
+  address: "https://api.cluster1.sandbox1990.opentlc.com:6443"
   environment: pro
   datacenter: europe
   region: eu
