@@ -55,9 +55,9 @@ applications:
         ignoreHelmHooks: false
         name: argocd
         teamInstancesAreClusterScoped: true
-        operator:
-          channel: latest
-          disableDefaultArgoCD: true
+        operator: false
+          # channel: latest
+          # disableDefaultArgoCD: true
         namespaces:
         - *ops
         argocd_cr:
