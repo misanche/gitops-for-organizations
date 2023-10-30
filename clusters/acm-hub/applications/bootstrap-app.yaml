@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: openshift-gitops-config
-  namespace: openshift-gitops
+  namespace: cluster-ops
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
