@@ -38,7 +38,7 @@ applications:
     source_ref: main
     sync_policy: *sync_policy_true
     disable_app_finalizer: true
-    destination: cluster-ops
+    destination: openshift-gitops
     values:
       namespaces:
       - name: *ops
