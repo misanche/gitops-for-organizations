@@ -1,0 +1,14 @@
+apiVersion: apps.open-cluster-management.io/v1beta1
+kind: GitOpsCluster
+metadata:
+  name: argo-acm-clusters
+  namespace: cluster-ops
+spec:
+  argoServer:
+    cluster: local-cluster
+    argoNamespace: cluster-ops
+  placementRef:
+    kind: Placement
+    apiVersion: cluster.open-cluster-management.io/v1beta1
+    name: gitops
+    namespace: cluster-ops

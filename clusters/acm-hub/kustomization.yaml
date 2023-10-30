@@ -3,6 +3,6 @@ kind: Kustomization
 resources:
 - applications
 - applicationsets
-- argocd
+##- argocd
 - gitops-cluster
-- policies
+##- policies

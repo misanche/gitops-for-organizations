@@ -1,0 +1,16 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: gitops
+  namespace: cluster-ops
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchExpressions:
+        - key: environment
+          operator: "In"
+          values:
+          - dev
+          - pre
+          - pro
