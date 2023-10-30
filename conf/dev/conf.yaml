@@ -49,4 +49,3 @@ applications:
       argocd_version: v2.8.3
       region: *region
       cluster: *environment
-      sync_policy:  *sync_policy_true
