@@ -1,0 +1,6 @@
+# gitops-operator:
+#   operator: false
+#   secrets: false
+#   namespaces: false
+#   ignoreHelmHooks: true
+# namespaces: false

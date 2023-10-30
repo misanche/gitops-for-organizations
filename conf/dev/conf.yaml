@@ -10,7 +10,8 @@ cluster:
 
 
 gitops-operator:
-  namespaces: false
   operator: false
-  ignoreHelmHooks: false
   secrets: false
+  namespaces: false
+  ignoreHelmHooks: true
+namespaces: falses

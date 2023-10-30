@@ -7,4 +7,4 @@
 # Chart dependencies
 **/charts/*.tgz
 **/requirements.lock
-**/Chart.locks
+**/Chart.lock
