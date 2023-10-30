@@ -34,5 +34,6 @@ spec:
             - /conf/{{cluster.environment}}/conf.yaml
             - /clusters/{{cluster.environment}}/{{cluster.fqdn}}/conf.yaml
       destination:
-        server: "{{cluster.address}}"
+        #server: "{{cluster.address}}"
+        server: "https://kubernetes.default.svc"
       syncPolicy: {}
