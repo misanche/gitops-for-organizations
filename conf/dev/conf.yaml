@@ -29,7 +29,7 @@ teams: &teams
   - name: team2
 
 applications:
-  - name: team-argocd
+  - name: team-argocd-dev
     enabled: true
     source: https://github.com/misanche/gitops-for-organizations.git
     source_path: base/components/team-argo

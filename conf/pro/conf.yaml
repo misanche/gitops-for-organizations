@@ -30,7 +30,7 @@ gitops-operator:
 namespaces: false
 
 applications:
-  - name: gitops-operator
+  - name: gitops-operator-pro
     enabled: true
     source: https://github.com/misanche/gitops-for-organizations.git
     cluster_api: *api
@@ -63,7 +63,7 @@ applications:
         argocd_cr:
           version: v2.8.3
     
-  - name: team-argocd
+  - name: team-argocd-pro
     enabled: true
     source: https://github.com/misanche/gitops-for-organizations.git
     cluster_api: *api
