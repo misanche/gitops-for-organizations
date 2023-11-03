@@ -33,6 +33,7 @@ spec:
         targetRevision: main
         path: base/components/{{template}}
         helm:
+          ignoreMissingValueFiles: true
           valueFiles:
             - /conf/{{metadata.labels.environment}}/conf.yaml
             - /clusters/{{metadata.labels.environment}}/{{clusterName}}/conf.yaml
