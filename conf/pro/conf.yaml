@@ -30,57 +30,57 @@ gitops-operator:
   ignoreHelmHooks: true
 namespaces: false
 
-applications:
-  - name: gitops-operator-pro
-    enabled: true
-    source: https://github.com/misanche/gitops-for-organizations.git
-    cluster_api: *api
-    source_path: base/components/bootstrap
-    source_ref: main
-    sync_policy: *sync_policy_true
-    disable_app_finalizer: true
-    destination: cluster-ops
-    values:
-      namespaces:
-      - name: *ops
-        labels:
-          argocd.argoproj.io/managed-by: *ops
-        annotations:
-          "helm.sh/resource-policy": keep # Never delete the cluster-ops namespace
-      gitops-operator:
-        enabled: true
-        # Since this is designed to be run before the cluster knows anything about the argocd CR, we need to use helm hooks to control the ordering
-        # This means that the cluster argocd resource is deployed as a helm hook rather than a managed resource
-        # This has the side-effect that every time you run "helm upgrade" argocd will be deleted and recreated
-        # It should not affect the applications
-        ignoreHelmHooks: false
-        name: argocd
-        teamInstancesAreClusterScoped: true
-        operator: false
-          # channel: latest
-          # disableDefaultArgoCD: true
-        namespaces:
-        - *ops
-        argocd_cr:
-          version: v2.8.3
+# applications:
+#   - name: gitops-operator-pro
+#     enabled: true
+#     source: https://github.com/misanche/gitops-for-organizations.git
+#     cluster_api: *api
+#     source_path: base/components/bootstrap
+#     source_ref: main
+#     sync_policy: *sync_policy_true
+#     disable_app_finalizer: true
+#     destination: cluster-ops
+#     values:
+#       namespaces:
+#       - name: *ops
+#         labels:
+#           argocd.argoproj.io/managed-by: *ops
+#         annotations:
+#           "helm.sh/resource-policy": keep # Never delete the cluster-ops namespace
+#       gitops-operator:
+#         enabled: true
+#         # Since this is designed to be run before the cluster knows anything about the argocd CR, we need to use helm hooks to control the ordering
+#         # This means that the cluster argocd resource is deployed as a helm hook rather than a managed resource
+#         # This has the side-effect that every time you run "helm upgrade" argocd will be deleted and recreated
+#         # It should not affect the applications
+#         ignoreHelmHooks: false
+#         name: argocd
+#         teamInstancesAreClusterScoped: true
+#         operator: false
+#           # channel: latest
+#           # disableDefaultArgoCD: true
+#         namespaces:
+#         - *ops
+#         argocd_cr:
+#           version: v2.8.3
     
-  - name: team-argocd-pro
-    enabled: true
-    source: https://github.com/misanche/gitops-for-organizations.git
-    cluster_api: *api
-    source_path: base/components/team-argo
-    source_ref: main
-    sync_policy: *sync_policy_true
-    disable_app_finalizer: true
-    destination: cluster-ops
-    values:
-      teams: *teams
-      team_namespaces:
-        - name: ci-cd
-        - name: pro
-      repo_url: https://github.com/misanche/gitops-for-organizations.git
-      repo_target_revision: main
-      gitops_operator_chart_version: 0.8.4
-      argocd_version: v2.8.3
-      region: *region
-      cluster: *environment
+#   - name: team-argocd-pro
+#     enabled: true
+#     source: https://github.com/misanche/gitops-for-organizations.git
+#     cluster_api: *api
+#     source_path: base/components/team-argo
+#     source_ref: main
+#     sync_policy: *sync_policy_true
+#     disable_app_finalizer: true
+#     destination: cluster-ops
+#     values:
+#       teams: *teams
+#       team_namespaces:
+#         - name: ci-cd
+#         - name: pro
+#       repo_url: https://github.com/misanche/gitops-for-organizations.git
+#       repo_target_revision: main
+#       gitops_operator_chart_version: 0.8.4
+#       argocd_version: v2.8.3
+#       region: *region
+#       cluster: *environment

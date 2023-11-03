@@ -5,24 +5,27 @@ metadata:
   namespace: cluster-ops
 spec:
   generators:
-    - matrix:
-        generators:
-          - git:
-              repoURL: https://github.com/misanche/gitops-for-organizations.git
-              revision: main
-              files:
-                - path: "clusters/**/conf.yaml"
-          - list:
-              elements:
-                - template: bootstrap
+  - matrix:
+      generators:
+      - merge:
+          generators:
+          - clusterDecisionResource:
+              configMapRef: acm-placement
+              labelSelector:
+                matchLabels:
+                  cluster.open-cluster-management.io/placement: gitops
+          - clusters: {}
+          mergeKeys:
+          - server
+      - list:
+          elements:
+            - template: bootstrap
   template:
     metadata:
-      name: "config-{{cluster.environment}}-{{cluster.name}}-{{template}}"
+      name: "config-{{metadata.labels.environment}}-{{clusterName}}-{{template}}"
       labels:
-        environment: "{{cluster.environment}}" 
-        cluster: "{{cluster.fqdn}}"
-        region: "{{cluster.region}}"
-        cloud: "{{cluster.cloud}}"
+        environment: "{{metadata.labels.environment}}" 
+        region: "{{metadata.labels.region}}"
     spec:
       project: default
       source:
@@ -31,8 +34,8 @@ spec:
         path: base/components/{{template}}
         helm:
           valueFiles:
-            - /conf/{{cluster.environment}}/conf.yaml
-            - /clusters/{{cluster.environment}}/{{cluster.fqdn}}/conf.yaml
+            - /conf/{{metadata.labels.environment}}/conf.yaml
+            - /clusters/{{cluster.environment}}/{{{{clusterName}}}}/conf.yaml
       destination:
         #server: "{{cluster.address}}"
         server: "https://kubernetes.default.svc"

@@ -28,24 +28,24 @@ teams: &teams
   - name: team1
   - name: team2
 
-applications:
-  - name: team-argocd-dev
-    enabled: true
-    source: https://github.com/misanche/gitops-for-organizations.git
-    source_path: base/components/team-argo
-    source_ref: main
-    sync_policy: *sync_policy_true
-    disable_app_finalizer: true
-    destination: cluster-ops
-    values:
-      teams: *teams
-      team_namespaces:
-        - name: ci-cd
-        - name: dev
-        - name: test
-      repo_url: https://github.com/misanche/gitops-for-organizations.git
-      repo_target_revision: main
-      gitops_operator_chart_version: 0.8.4
-      argocd_version: v2.8.3
-      region: *region
-      cluster: *environment
+# applications:
+#   - name: team-argocd-dev
+#     enabled: true
+#     source: https://github.com/misanche/gitops-for-organizations.git
+#     source_path: base/components/team-argo
+#     source_ref: main
+#     sync_policy: *sync_policy_true
+#     disable_app_finalizer: true
+#     destination: cluster-ops
+#     values:
+#       teams: *teams
+#       team_namespaces:
+#         - name: ci-cd
+#         - name: dev
+#         - name: test
+#       repo_url: https://github.com/misanche/gitops-for-organizations.git
+#       repo_target_revision: main
+#       gitops_operator_chart_version: 0.8.4
+#       argocd_version: v2.8.3
+#       region: *region
+#       cluster: *environment
