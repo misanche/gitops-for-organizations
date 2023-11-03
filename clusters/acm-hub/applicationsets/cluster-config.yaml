@@ -35,7 +35,7 @@ spec:
         helm:
           valueFiles:
             - /conf/{{metadata.labels.environment}}/conf.yaml
-            - /clusters/{{cluster.environment}}/{{{{clusterName}}}}/conf.yaml
+            - /clusters/{{metadata.labels.environment}}/{{{{clusterName}}}}/conf.yaml
       destination:
         #server: "{{cluster.address}}"
         server: "https://kubernetes.default.svc"
