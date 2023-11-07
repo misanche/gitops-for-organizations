@@ -1,0 +1,14 @@
+#Values for dependency chart (Operatorhub)
+operatorhub:
+  namespace: openshift-operators
+  operators:
+    - name: grafana-operator
+      subscription:
+        channel: v5
+        approval: Automatic
+        operatorName: grafana-operator
+        sourceName: community-operators
+        sourceNamespace: openshift-marketplace
+        csv: grafana-operator.v5.4.2
+      operatorgroup:
+        create: false

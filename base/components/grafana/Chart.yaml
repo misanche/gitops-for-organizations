@@ -1,3 +1,12 @@
 apiVersion: v2
-name: grafana
-version: 0.1.0
+name: amq-streams-core
+description: A Helm chart for Kafka (amq-streams-core)
+type: application
+# This is the chart version. This version number should be incremented each time you make changes
+version: 1.0.0
+# This is the version number of the kafka being deployed. This version number should be
+appVersion: 1.0.0
+dependencies:
+  - name: operatorhub
+    version: "0.0.10"
+    repository: https://redhat-cop.github.io/helm-charts
