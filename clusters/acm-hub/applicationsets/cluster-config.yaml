@@ -40,4 +40,9 @@ spec:
       destination:
         #server: "{{cluster.address}}"
         server: "https://kubernetes.default.svc"
-      syncPolicy: {}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - Validate=true
