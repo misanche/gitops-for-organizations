@@ -27,8 +27,6 @@ sync_policy_true: &sync_policy_true
 teams: &teams
   - name: team1
   - name: team2
-  - name: team3
-  - name: team4
 
 applications:
   - name: team-argocd-dev
