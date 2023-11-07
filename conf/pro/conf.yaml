@@ -78,6 +78,7 @@ namespaces: false
 #       team_namespaces:
 #         - name: ci-cd
 #         - name: pro
+
 #       repo_url: https://github.com/misanche/gitops-for-organizations.git
 #       repo_target_revision: main
 #       gitops_operator_chart_version: 0.8.4

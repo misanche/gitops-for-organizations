@@ -25,7 +25,7 @@ spec:
       name: "config-{{metadata.labels.environment}}-{{clusterName}}-{{template}}"
       labels:
         environment: "{{metadata.labels.environment}}" 
-        region: "{{metadata.labels.region}}"
+        #region: "{{metadata.labels.region}}"
     spec:
       project: default
       source:
