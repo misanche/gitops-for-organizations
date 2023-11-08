@@ -2,7 +2,7 @@ cluster:
   name: pro
   domain: pro.redhat.com
   fqdn: pro.redhat.com
-  address: &api "https://api.cluster1.sandbox467.opentlc.com:6443"
+  address: &api "https://api.cluser1.sandbox2230.opentlc.com:6443"
   environment: &environment pro
   datacenter: europe
   region: &region eu 
