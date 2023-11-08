@@ -27,6 +27,7 @@ sync_policy_true: &sync_policy_true
 teams: &teams
   - name: team1
   - name: team2
+  - name: team3
 
 applications:
   - name: operators
