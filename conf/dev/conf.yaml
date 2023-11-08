@@ -29,27 +29,27 @@ teams: &teams
   - name: team2
 
 applications:
-  # - name: operators
-  #   enabled: true
-  #   source: https://github.com/misanche/gitops-for-organizations.git
-  #   source_path: base/components/grafana
-  #   source_ref: main
-  #   sync_policy: *sync_policy_true
-  #   disable_app_finalizer: true
-  #   destination: cluster-ops
-  #   values:
-  #     operatorhub:
-  #       namespace: openshift-operators
-  #       operators:
-  #         - name: grafana-operator
-  #           subscription:
-  #             channel: v5
-  #             approval: Automatic
-  #             operatorName: grafana-operator
-  #             sourceName: community-operators
-  #             sourceNamespace: openshift-marketplace
-  #           operatorgroup:
-  #             create: false
+  - name: operators
+    enabled: true
+    source: https://github.com/misanche/gitops-for-organizations.git
+    source_path: base/components/grafana
+    source_ref: main
+    sync_policy: *sync_policy_true
+    disable_app_finalizer: true
+    destination: cluster-ops
+    values:
+      operatorhub:
+        namespace: openshift-operators
+        operators:
+          - name: grafana-operator
+            subscription:
+              channel: v5
+              approval: Automatic
+              operatorName: grafana-operator
+              sourceName: community-operators
+              sourceNamespace: openshift-marketplace
+            operatorgroup:
+              create: false
       
   - name: team-argocd-dev
     enabled: true
