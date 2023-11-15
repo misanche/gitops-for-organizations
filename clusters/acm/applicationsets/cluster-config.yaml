@@ -22,9 +22,9 @@ spec:
             - template: bootstrap
   template:
     metadata:
-      name: "config-{{metadata.labels.environment}}-{{clusterName}}-{{template}}"
+      name: "config-{{metadata.labels.deploymentType}}-{{clusterName}}-{{template}}"
       labels:
-        environment: "{{metadata.labels.environment}}" 
+        deploymentType: "{{metadata.labels.deploymentType}}" 
         #region: "{{metadata.labels.region}}"
     spec:
       project: default
@@ -35,8 +35,10 @@ spec:
         helm:
           ignoreMissingValueFiles: true
           valueFiles:
-            - /conf/{{metadata.labels.environment}}/conf.yaml
-            - /clusters/{{metadata.labels.environment}}/{{clusterName}}/conf.yaml
+            - /conf/{{metadata.labels.deploymentType}}/conf.yaml
+            - /clusters/{{metadata.labels.deploymentType}}/{{clusterName}}/conf.yaml
+          values:
+            api: {{cluster.address}}
       destination:
         #server: "{{cluster.address}}"
         server: "https://kubernetes.default.svc"

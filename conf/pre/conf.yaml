@@ -1,9 +1,0 @@
-cluster:
-  name: pre
-  domain: pre.redhat.com
-  fqdn: pre.redhat.com
-  address: "https://kubernetes.default.svc"
-  environment: pre
-  datacenter: europe
-  region: eu
-  registry: quay-pre.io
