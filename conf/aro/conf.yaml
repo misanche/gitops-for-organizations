@@ -1,3 +1,5 @@
+ops_namespace: &ops "cluster-ops"
+
 gitops-operator:
   operator: false
   secrets: false
