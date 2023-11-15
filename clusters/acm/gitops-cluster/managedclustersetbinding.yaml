@@ -1,7 +1,7 @@
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: ManagedClusterSetBinding
 metadata:
-  name: global
+  name: managed-clusters
   namespace: cluster-ops
 spec:
-  clusterSet: global
+  clusterSet: managed-clusters

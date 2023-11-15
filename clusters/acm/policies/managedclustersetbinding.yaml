@@ -1,8 +1,7 @@
 apiVersion: cluster.open-cluster-management.io/v1beta1
-kind: Placement
+kind: ManagedClusterSetBinding
 metadata:
-  name: openshift-gitops-placement
+  name: managed-clusters
   namespace: open-cluster-management
 spec:
-  clusterSets:
-    - managed-clusters
+  clusterSet: managed-clusters
