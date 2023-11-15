@@ -38,7 +38,7 @@ spec:
             - /conf/{{metadata.labels.deploymentType}}/conf.yaml
             - /clusters/{{metadata.labels.deploymentType}}/{{clusterName}}/conf.yaml
           values:
-            api: {{cluster.address}}
+            api: "{{cluster.address}}"
       destination:
         #server: "{{cluster.address}}"
         server: "https://kubernetes.default.svc"
