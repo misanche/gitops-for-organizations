@@ -8,7 +8,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: clusters/acm-hub
+    path: clusters/acm
     repoURL: >-
       https://github.com/misanche/gitops-for-organizations.git
     targetRevision: main

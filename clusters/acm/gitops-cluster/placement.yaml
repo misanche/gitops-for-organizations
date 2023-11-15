@@ -8,9 +8,7 @@ spec:
   - requiredClusterSelector:
       labelSelector:
         matchExpressions:
-        - key: environment
+        - key: deploymentType
           operator: "In"
           values:
-          - dev
-          - pre
-          - pro
+          - aro

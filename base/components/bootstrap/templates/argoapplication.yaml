@@ -14,7 +14,11 @@ metadata:
 spec:
   destination:
     namespace: {{ $app.destination | default "ocp-ci-cd" }}
+    {{- if $.Values.api }}
+    server: {{ $.Values.api }}
+    {{ else }}
     server: {{ $app.cluster_api | default "https://kubernetes.default.svc" }}
+    {{ end -}}
   project: {{ $app.project | default "default" }}
   source:
 {{- if not $app.no_helm }}
