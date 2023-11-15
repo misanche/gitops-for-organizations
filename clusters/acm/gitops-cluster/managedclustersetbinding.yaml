@@ -4,4 +4,4 @@ metadata:
   name: managed-clusters
   namespace: cluster-ops
 spec:
-  clusterSet: global
+  clusterSet: managed-clusters
